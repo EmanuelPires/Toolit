@@ -1,0 +1,13 @@
+[
+  {
+    "id": 1,
+    "name": "hammer",
+    "supplier": "emanuel",
+    "price": 20,
+    "stock": 10,
+    "onOrder": 3,
+    "available": 10,
+    "image": "",
+    "categoryID": 9
+  }
+]

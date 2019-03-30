@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "ProductID": 1,
+    "OrderDate": "2019-03-30",
+    "PickUpDate": "2019-03-30",
+    "OrderQuantity": 2,
+    "PickedUp": true,
+    "OrderCost": 10
+  }
+]
