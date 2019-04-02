@@ -20,7 +20,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              Search <i class="fas fa-search" />
+              Search <i class="fas fa-search" id="search" />
             </Link>
           </li>
           <li className="nav-item">
@@ -32,7 +32,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              My Profile <i class="fas fa-user-circle" />
+              My Profile <i class="fas fa-user-circle" id="profile" />
             </Link>
           </li>
           <li className="nav-item">
@@ -44,7 +44,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              My Orders <i class="fas fa-shopping-cart" />
+              My Orders <i class="fas fa-shopping-cart" id="orders" />
             </Link>
           </li>
           <li className="nav-item">
@@ -56,7 +56,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              My Products <i class="fas fa-file-invoice-dollar" />
+              My Products <i class="fas fa-file-invoice-dollar" id="products" />
             </Link>
           </li>
         </ul>

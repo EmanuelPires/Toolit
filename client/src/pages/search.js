@@ -34,7 +34,7 @@ function search() {
           </div>
           <div className="col s2">
             <button className="btn waves-effect waves-light" id="searchBtn">
-              Search
+              <i className="fas fa-search center-align" />
             </button>
           </div>
         </div>
