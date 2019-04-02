@@ -5,9 +5,12 @@ import { Link } from "react-router-dom";
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 function Navbar() {
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <nav
+      className="navbar navbar-expand-lg navbar-light bg-#448aff blue accent-2
+    "
+    >
       <div>
-        <ul className="navbar-nav">
+        <ul className="navbar-nav ">
           <li className="nav-item">
             <Link
               to="/search"
@@ -17,7 +20,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              SearchProducts
+              Search <i class="fas fa-search" />
             </Link>
           </li>
           <li className="nav-item">
@@ -29,7 +32,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              My Profile
+              My Profile <i class="fas fa-user-circle" />
             </Link>
           </li>
           <li className="nav-item">
@@ -41,7 +44,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              My Orders
+              My Orders <i class="fas fa-shopping-cart" />
             </Link>
           </li>
           <li className="nav-item">
@@ -53,7 +56,7 @@ function Navbar() {
                   : "nav-link"
               }
             >
-              My Products
+              My Products <i class="fas fa-file-invoice-dollar" />
             </Link>
           </li>
         </ul>
