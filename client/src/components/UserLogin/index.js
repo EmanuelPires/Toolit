@@ -1,9 +1,7 @@
 import React from "react";
 
 function UserLogin() {
-  return (
-    
-  );
+  return <div className="container" />;
 }
 
 export default UserLogin;
