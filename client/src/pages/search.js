@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
+import GooglePlacesSuggest from "react-google-places-suggest";
 
-import PlacesAutocomplete from "react-places-autocomplete";
 class Search extends Component {
   render() {
     return (
