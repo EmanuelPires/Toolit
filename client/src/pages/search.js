@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
 
+import PlacesAutocomplete from "react-places-autocomplete";
 class Search extends Component {
   render() {
     return (
