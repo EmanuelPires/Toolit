@@ -1,20 +1,14 @@
-# toolit
+## Git Collaboration Process
 
-Here's the process for pushing merging and pulling.
+ 1. git status  `check if you are in your branch`
+ 2. git add .
+ 3. git commit -m "`your message`"
+ 4. git push origin `your branch`
+ 5. git checkout master
+ 6. git pull
+ 7. git merge `your branch`
+ 8. git push origin master
 
-Be in your branch.
+  **Master and `your branch`** are now NSYNC 
 
-Do git add .
-git commit -m "message"
 
-git push origin "yourbranchname"
-
-git checkout master
-
-git pull
-
-git merge "your branch Name"
-
-git push origin master
-
-Master and your branch are now in sync
