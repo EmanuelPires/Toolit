@@ -106,6 +106,9 @@ export default class Search extends Component {
           <SearchResults
             image={searchResults.image}
             name={searchResults.name}
+            stock={searchResults.stock}
+            available={searchResults.available}
+            price={searchResults.price}
           />
         ))}
       </div>

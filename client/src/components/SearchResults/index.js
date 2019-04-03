@@ -14,7 +14,8 @@ const SearchResults = props => (
                 <li>Item: {props.name}</li>
 
                 <li>Quantity: {props.stock}</li>
-                <li>Price: ${props.price}.00</li>
+                <li>Available: {props.available}</li>
+                <li>Price: ${props.price}</li>
               </ul>
             </div>
           </div>
