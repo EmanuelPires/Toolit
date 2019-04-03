@@ -109,6 +109,7 @@ export default class Search extends Component {
             stock={searchResults.stock}
             available={searchResults.available}
             price={searchResults.price}
+            description={searchResults.description}
           />
         ))}
       </div>
