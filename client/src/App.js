@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Login from "./pages/login";
 import Search from "./pages/search";
 import "./App.css";
-import MyProfile from "./pages/myProfile";
-import MyOrders from "./pages/myOrders";
+import MyProfile from "./pages/MyProfile";
+import MyOrders from "./pages/MyOrders";
 import MyProducts from "./pages/MyProducts";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
