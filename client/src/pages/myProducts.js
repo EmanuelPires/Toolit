@@ -15,7 +15,23 @@ class MyProducts extends Component {
     return (
       <div>
         <Navbar /> 
-        <ProductMain />
+        <div className="container">
+          <h1>My Products</h1>
+
+          <div>
+            {this.state.product.map(Product => (
+              <ProductMain
+                name={Product.name}
+                supplier={Product.supplier}
+                price={Product.price}
+                stock={Product.stock}
+                available={Product.available}
+                image={Product.image}
+                description={Product.description}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     );
   }
