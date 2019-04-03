@@ -2,13 +2,15 @@ import React, { Component } from "react";
 import Navbar from "../components/Navbar";
 import GoogleMapLoader from "react-google-maps-loader";
 import GooglePlacesSuggest from "react-google-places-suggest";
-
+import SearchResults from "../components/SearchResults";
+import Products from "../product.json";
 const MY_API_KEY = "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410";
 
 export default class Search extends Component {
   state = {
     search: "",
-    value: ""
+    value: "",
+    searchResults: Products
   };
   handleInputChange = e => {
     this.setState({ search: e.target.value, value: e.target.value });
@@ -22,8 +24,12 @@ export default class Search extends Component {
   handleNoResult = () => {
     console.log("No results for ", this.state.search);
   };
+
+  handleSearch = () => {
+    console.log("submit button clicked");
+  };
   render() {
-    const { search, value } = this.state;
+    const { search, value, searchResults } = this.state;
     return (
       <div>
         <Navbar />
@@ -85,13 +91,23 @@ export default class Search extends Component {
               />
             </div>
             <div className="col s2">
-              <button className="btn waves-effect waves-light" id="searchBtn">
+              <button
+                className="btn waves-effect waves-light"
+                id="searchBtn"
+                onClick={this.handleSearch}
+              >
                 Search
               </button>
             </div>
           </div>
           <div />
         </div>
+        {this.state.searchResults.map(searchResults => (
+          <SearchResults
+            image={searchResults.image}
+            name={searchResults.name}
+          />
+        ))}
       </div>
     );
   }
