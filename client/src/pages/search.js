@@ -35,7 +35,6 @@ export default class Search extends Component {
               tools they need to build and create.&nbsp;
             </p>
           </div>
-<<<<<<< HEAD
           <div className="row">
             <div className="autocomplete col s5">
               <input
@@ -90,12 +89,6 @@ export default class Search extends Component {
                 Search
               </button>
             </div>
-=======
-          <div className="col s2">
-            <button className="btn waves-effect waves-light" id="searchBtn">
-              <i className="fas fa-search center-align" />
-            </button>
->>>>>>> mike
           </div>
           <div />
         </div>
