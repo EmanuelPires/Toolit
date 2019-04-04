@@ -1,6 +1,7 @@
 create database toolit;
 use toolit;
 
+DROP TABLE IF EXISTS `customer`;
 create table customer (
 `CustomerID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) DEFAULT NULL,
@@ -16,13 +17,14 @@ create table customer (
   PRIMARY KEY (`CustomerID`)
 ) ;
 
+DROP TABLE IF EXISTS `product_category`;
 CREATE TABLE `product_category` (
   `ProductCategoryID` int(11) NOT NULL,
   `CategoryName` varchar(100) NOT NULL,
   PRIMARY KEY (`ProductCategoryID`)
 );
 
-
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `ProductID` int(11) NOT NULL AUTO_INCREMENT,
   `Product_Name` varchar(255) DEFAULT NULL,
@@ -31,6 +33,7 @@ CREATE TABLE `product` (
   `Availability` int(11) DEFAULT NULL,
   `Image` varchar(255) DEFAULT NULL,
   `Click` int(11) DEFAULT NULL,
+  `ProductPlaceID` varchar(1000) DEFAULT NULL,
   `SupplierID` int(11) NOT NULL,
   `FK_CategoryID` int(11) NOT NULL,
   PRIMARY KEY (`ProductID`),
@@ -40,7 +43,7 @@ CREATE TABLE `product` (
   CONSTRAINT `product_ibfk_2` FOREIGN KEY (`FK_CategoryID`) REFERENCES `product_category` (`ProductCategoryID`) ON UPDATE CASCADE
 ) ;
 
-
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `OrderID` int(11) NOT NULL AUTO_INCREMENT,
   `OrderDate` datetime DEFAULT NULL,
