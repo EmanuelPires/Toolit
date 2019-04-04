@@ -4,13 +4,17 @@ import GoogleMapLoader from "react-google-maps-loader";
 import GooglePlacesSuggest from "react-google-places-suggest";
 import SearchResults from "../components/SearchResults";
 import Products from "../product.json";
+//Working on getting distance calc to work with json file.
+import Customer from "../customer.json";
+import axios from "axios";
 const MY_API_KEY = "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410";
 
 export default class Search extends Component {
   state = {
     search: "",
     value: "",
-    searchResults: Products
+    searchResults: Products,
+    currentCustomer: Customer
   };
   handleInputChange = e => {
     this.setState({ search: e.target.value, value: e.target.value });
@@ -27,6 +31,23 @@ export default class Search extends Component {
 
   handleSearch = () => {
     console.log("submit button clicked");
+    const placeIdOne = this.state.currentCustomer.placeId;
+    const placeIdTwo =
+      "Eio2MDAxIFBydWRlbmNlIERyLCBBbm5hbmRhbGUsIFZBIDIyMDAzLCBVU0EiGxIZChQKEgmLoOLlpU22iRFUR3j674HE9hDxLg";
+
+    const baseUrl =
+      "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&";
+    const param1 =
+      "origins=place_id:" +
+      placeIdOne +
+      "&destinations=place_id:" +
+      placeIdTwo +
+      "&key=" +
+      MY_API_KEY;
+
+    axios.get(baseUrl + param1).then(data => {
+      console.log(data);
+    });
   };
   render() {
     const { search, value, searchResults } = this.state;
@@ -110,6 +131,7 @@ export default class Search extends Component {
             available={searchResults.available}
             price={searchResults.price}
             description={searchResults.description}
+            key={searchResults.image}
           />
         ))}
       </div>
