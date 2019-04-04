@@ -1,20 +1,18 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
-import ProductMain  from "../components/ProductMain";
-import Product from "../product.json"
+import ProductMain from "../components/ProductMain";
+import Product from "../product.json";
 // import "./style.css";
 
-
 class MyProducts extends Component {
-
-  state= {
+  state = {
     product: Product
   };
 
   render() {
     return (
       <div>
-        <Navbar /> 
+        <Navbar />
         <div className="container">
           <h1>My Products</h1>
 
