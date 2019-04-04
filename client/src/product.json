@@ -1,13 +1,14 @@
 [
   {
     "id": 1,
-    "name": "hammer",
+    "name": "Hammer",
     "supplier": "emanuel",
     "price": 20,
     "stock": 10,
     "onOrder": 3,
     "available": 10,
     "image": "https://i100.photobucket.com/albums/m20/qbizhardware/ClawHammer_zps230ff198.jpg?width=250&height=250&crop=1:1,smart",
+    "description": "This hammer has a wooden handle and a metal head. Are you a metal-head?  I'm writing this to fill up space because I was thinking about a craigslist look?",
     "categoryID": 9
   }
 ]

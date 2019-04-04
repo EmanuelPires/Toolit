@@ -8,15 +8,20 @@ const SearchResults = props => (
           <div class="card-image">
             <img className="img-responsive" src={props.image} alt="" />
           </div>
+
           <div class="card-stacked">
             <div class="card-content">
+              <span class="card-title">{props.name}</span>
+              <p>{props.description}</p>
               <ul>
-                <li>Item: {props.name}</li>
-
                 <li>Quantity: {props.stock}</li>
                 <li>Available: {props.available}</li>
                 <li>Price: ${props.price}</li>
               </ul>
+
+              <div class="card-action">
+                <a href="#">Rent</a>
+              </div>
             </div>
           </div>
         </div>
