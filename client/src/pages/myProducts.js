@@ -18,7 +18,7 @@ class MyProducts extends Component {
 
           <div>
             {this.state.product.map(Product => (
-              <ProductMain
+              <ProductMain key = {Product.id}
                 name={Product.name}
                 supplier={Product.supplier}
                 price={Product.price}
