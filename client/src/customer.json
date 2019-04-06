@@ -9,5 +9,16 @@
     "state": "DC",
     "country": "USA",
     "zipcode": "20002"
+  },
+  {
+    "id": 2,
+    "name": "Anthony",
+    "email": "anthony.lawson@mrtechnocrat.com",
+    "phone": "937-277-4284",
+    "street": "2425 Archwood Court",
+    "city": "Dayton",
+    "state": "OH",
+    "country": "USA",
+    "zipcode": "45426"
   }
 ]
