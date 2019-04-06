@@ -4,12 +4,12 @@ const Orders = props => (
   <div className="container">
     <ul>
       <li>
-        <div class="card horizontal hoverable ">
-          <div class="card-image">
+        <div className="card horizontal hoverable ">
+          <div className="card-image">
             <img className="img-responsive" src={props.image} />
           </div>
-          <div class="card-stacked">
-            <div class="card-content">
+          <div className="card-stacked">
+            <div className="card-content">
               <ul>
                 <li>Item: {props.item}</li>
                 <li>Ordered: {props.OrderDate}</li>

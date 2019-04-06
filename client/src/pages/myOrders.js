@@ -17,7 +17,7 @@ class MyOrders extends Component {
 
           <div>
             {this.state.Orderhistory.map(Orderhistory => (
-              <Orders
+              <Orders key = {Orderhistory.id}
                 image={Orderhistory.image}
                 item={Orderhistory.item}
                 productID={Orderhistory.productID}
