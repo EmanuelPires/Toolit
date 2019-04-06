@@ -13,9 +13,8 @@ class MyOrders extends Component {
       <div>
         <Navbar />
         <div className="container">
-          <div className="card">
-            <h1>TESTING 123</h1>
-          </div>
+          <h1>Order History</h1>
+
           <div>
             {this.state.Orderhistory.map(Orderhistory => (
               <Orders

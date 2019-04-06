@@ -1,15 +1,4 @@
-[
-  {
-    "id": 1,
-    "name": "Mike",
-    "email": "mikefox17@gmail.com",
-    "phone": "420-666-0000",
-    "street": "200 q street ne",
-    "city": "Washington",
-    "state": "DC",
-    "country": "USA",
-    "zipcode": "20002"
-  },
+
   {
     "id": 2,
     "name": "Anthony",
@@ -20,5 +9,7 @@
     "state": "OH",
     "country": "USA",
     "zipcode": "45426"
+=======
+    "zipcode": "20002",
+    "placeId": "ChIJmabmeiyzt4kR73pNcZd9DUo"
   }
-]
