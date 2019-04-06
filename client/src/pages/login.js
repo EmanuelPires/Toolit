@@ -33,18 +33,23 @@ export default class Login extends Component {
     customer: []
   }
 
+  componentDidMount(){
+    this.loadcustomer();
+  }
 
   loadcustomer = () =>{
     API.getcustomer()
-    .then(res =>
-      this.setState({customer: res.data})
-      )
+    .then(res => {
+      console.log('response', res)
+      this.setState({customer: res.data[0]})
+    })
+      
   } ;
 
   render(){
     return (
       <div className="container">
-        <Test name={this.customer}/>
+        <Test name={this.state.customer.Name}/>
         <button onClick={this.loadcustomer} >Test</button>
       </div>
     );
