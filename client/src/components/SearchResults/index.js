@@ -4,14 +4,14 @@ const SearchResults = props => (
   <div className="container">
     <ul>
       <li>
-        <div class="card horizontal hoverable ">
-          <div class="card-image">
+        <div className="card horizontal hoverable ">
+          <div className="card-image">
             <img className="img-responsive" src={props.image} alt="" />
           </div>
 
-          <div class="card-stacked">
-            <div class="card-content">
-              <span class="card-title">{props.name}</span>
+          <div className="card-stacked">
+            <div className="card-content">
+              <span className="card-title">{props.name}</span>
               <p>{props.description}</p>
               <ul>
                 <li>Quantity: {props.stock}</li>
@@ -19,7 +19,7 @@ const SearchResults = props => (
                 <li>Price: ${props.price}</li>
               </ul>
 
-              <div class="card-action">
+              <div className="card-action">
                 <a href="#">Rent</a>
               </div>
             </div>
