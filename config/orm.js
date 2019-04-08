@@ -35,7 +35,7 @@ function printQuestionMarks(num) {
   
   var orm = {
     all: function(tableInput, cb) {
-      var queryString = "SELECT * FROM " + tableInput + ";";
+      var queryString = "SELECT * FROM toolit." + tableInput + ";";
       console.log(queryString);
       connection.query(queryString, function(err, result) {
         if (err) {
@@ -45,7 +45,7 @@ function printQuestionMarks(num) {
       });
     },
     create: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO " + table;
+        var queryString = "INSERT INTO toolit." + table;
     
         queryString += " (";
         queryString += cols.toString();
@@ -65,7 +65,7 @@ function printQuestionMarks(num) {
         });
     },
     update: function(table, objColVals, condition, cb) {
-        var queryString = "UPDATE " + table;
+        var queryString = "UPDATE toolit." + table;
     
         queryString += " SET ";
         queryString += objToSql(objColVals);
@@ -80,7 +80,21 @@ function printQuestionMarks(num) {
     
           cb(result);
         });
-      }
+      },
+    
+    delete: function(table, condition, cb) {
+      var queryString = "DELETE FROM toolit." + table;
+      queryString += " WHERE ";
+      queryString += condition;
+  
+      connection.query(queryString, function(err, result) {
+        if (err) {
+          throw err;
+        }
+  
+        cb(result);
+      });
+    }  
     };
 
     module.exports = orm;

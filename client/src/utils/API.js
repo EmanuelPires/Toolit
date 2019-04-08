@@ -5,5 +5,9 @@ export default {
   getcustomer: function() {
     console.log("Axios call");
     return axios.get("http://localhost:3001/api/user/customer");
+  },
+  getorder: function(){
+    console.log("Axios Call for Orders");
+    return axios.get("http://localhost:3001/api/user/order")
   }
 };
