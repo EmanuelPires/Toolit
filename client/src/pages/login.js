@@ -30,7 +30,8 @@ import axios from "axios";
 export default class Login extends Component {
 
   state = {
-    customer: []
+    customer: [],
+    order: []
   }
 
   componentDidMount(){
@@ -42,15 +43,23 @@ export default class Login extends Component {
     .then(res => {
       console.log('response', res)
       this.setState({customer: res.data[0]})
-    })
-      
+    })  
   } ;
+
+  loadorder = () =>{
+    API.getorder()
+    .then(res =>{
+      console.log('order response', res);
+      this.setState({order: res.data[0]})
+    })
+  };
 
   render(){
     return (
       <div className="container">
-        <Test name={this.state.customer.Name}/>
+        <Test name={this.state.customer.Name} order={this.state.order.OrderDate}/>
         <button onClick={this.loadcustomer} >Test</button>
+        <button onClick={this.loadorder}>Test Order</button>
       </div>
     );
 

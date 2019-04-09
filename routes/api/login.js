@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const customer = require("../../models/customer")
+const customer = require("../../models/customer");
+const order = require("../../models/order")
 
 // router.route("/customer")
 //   .get(console.log(customer))
@@ -11,7 +12,17 @@ router.get('/customer', (req, res) => {
   customer.all((data) => {
     res.json(data)
   })
-})
+});
+
+
+
+router.get('/order', (req,res) =>{
+  console.log("Test");
+  order.all((data) =>{
+    res.json(data)
+  })
+});
+
 
 
 
