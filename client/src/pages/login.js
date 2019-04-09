@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import Test from "../components/Test";
 import API from "../utils/API";
 import axios from "axios";
-
-
+import UserLogin from "../components/UserLogin";
 
 // function Login() {
 
@@ -15,7 +14,7 @@ import axios from "axios";
 //     API.getcustomer()
 //     .then(res =>
 //       console.log(res))
-//   } 
+//   }
 
 //   render(){
 //   return(
@@ -26,46 +25,44 @@ import axios from "axios";
 //   }
 // };
 
-
 export default class Login extends Component {
-
   state = {
     customer: [],
     order: []
-  }
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     this.loadcustomer();
   }
 
-  loadcustomer = () =>{
-    API.getcustomer()
-    .then(res => {
-      console.log('response', res)
-      this.setState({customer: res.data[0]})
-    })  
-  } ;
-
-  loadorder = () =>{
-    API.getorder()
-    .then(res =>{
-      console.log('order response', res);
-      this.setState({order: res.data[0]})
-    })
+  loadcustomer = () => {
+    API.getcustomer().then(res => {
+      console.log("response", res);
+      this.setState({ customer: res.data[0] });
+    });
   };
 
-  render(){
+  loadorder = () => {
+    API.getorder().then(res => {
+      console.log("order response", res);
+      this.setState({ order: res.data[0] });
+    });
+  };
+
+  render() {
     return (
       <div className="container">
-        <Test name={this.state.customer.Name} order={this.state.order.OrderDate}/>
-        <button onClick={this.loadcustomer} >Test</button>
+        <Test
+          name={this.state.customer.Name}
+          order={this.state.order.OrderDate}
+        />
+        <button onClick={this.loadcustomer}>Test</button>
         <button onClick={this.loadorder}>Test Order</button>
+        <UserLogin />
       </div>
     );
-
   }
-  }
-
+}
 
 // export default class Login extends Component {
 
@@ -85,14 +82,9 @@ export default class Login extends Component {
 
 //   // state = {
 
-
 //   // };
 
-  
-
 // };
-
-
 
 // function login() {
 //   return (
@@ -101,5 +93,3 @@ export default class Login extends Component {
 //     </div>
 //   );
 // }
-
-
