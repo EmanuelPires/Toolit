@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar";
 import GoogleMapLoader from "react-google-maps-loader";
 import GooglePlacesSuggest from "react-google-places-suggest";
 import SearchResults from "../components/SearchResults";
-import Products from "../product.json";
+
 import API from "../utils/API";
 
 import axios from "axios";
