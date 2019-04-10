@@ -35,7 +35,6 @@ export default withAuth(
 
       const mainContent = this.state.authenticated ? (
         <div>
-          <SignInWidget />
           <h1>HOME</h1>
           <button className="btn btn-light btn-lg" onClick={this.logout}>
             Logout

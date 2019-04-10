@@ -37,9 +37,13 @@ class App extends Component {
           <div className="App">
             <Route path="/" exact={true} component={Home} />
             <SecureRoute path="/search" exact={true} component={Search} />
-            <Route path="/myProfile" exact={true} component={MyProfile} />
-            <Route path="/myOrders" exact={true} component={myOrders} />
-            <Route path="/MyProducts" exact={true} component={MyProducts} />
+            <SecureRoute path="/myProfile" exact={true} component={MyProfile} />
+            <SecureRoute path="/myOrders" exact={true} component={myOrders} />
+            <SecureRoute
+              path="/MyProducts"
+              exact={true}
+              component={MyProducts}
+            />
 
             {/* Reroute not working, widget not loading */}
             <Route

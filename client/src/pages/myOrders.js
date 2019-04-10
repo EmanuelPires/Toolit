@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import Orders from "../components/Orders";
 import Orderhistory from "../Orderhistory.json";
 // import "./style.css";
@@ -11,13 +10,13 @@ class MyOrders extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <div className="container">
           <h1>Order History</h1>
 
           <div>
             {this.state.Orderhistory.map(Orderhistory => (
-              <Orders key = {Orderhistory.id}
+              <Orders
+                key={Orderhistory.id}
                 image={Orderhistory.image}
                 item={Orderhistory.item}
                 productID={Orderhistory.productID}
