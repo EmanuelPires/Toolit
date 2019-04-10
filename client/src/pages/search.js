@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import GoogleMapLoader from "react-google-maps-loader";
 import GooglePlacesSuggest from "react-google-places-suggest";
 import SearchResults from "../components/SearchResults";
@@ -48,7 +47,6 @@ export default class Search extends Component {
     const { search, value, searchResults } = this.state;
     return (
       <div>
-        <Navbar />
         <div className="container  ">
           <div className="center-align">
             <h2>Toolit</h2>
