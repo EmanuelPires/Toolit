@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import GoogleMapLoader from "react-google-maps-loader";
 import GooglePlacesSuggest from "react-google-places-suggest";
 import SearchResults from "../components/SearchResults";
 import Products from "../product.json";
-//Working on getting distance calc to work with json file.
-import Customer from "../customer.json";
+import API from "../utils/API";
+
 import axios from "axios";
 const MY_API_KEY = "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410";
 
 export default class Search extends Component {
   state = {
+    toolSearch: "",
     search: "",
     value: "",
-    searchResults: Products,
-    currentCustomer: Customer
+    searchResults: [],
+    currentCustomer: "1"
+  };
+  handleToolInputChange = e => {
+    this.setState({ toolSearch: e.target.value });
   };
   handleInputChange = e => {
     this.setState({ search: e.target.value, value: e.target.value });
@@ -29,31 +32,21 @@ export default class Search extends Component {
     console.log("No results for ", this.state.search);
   };
 
-  handleSearch = () => {
+  handleSearch = event => {
+    event.preventDefault();
     console.log("submit button clicked");
-    const placeIdOne = this.state.currentCustomer.placeId;
-    const placeIdTwo =
-      "Eio2MDAxIFBydWRlbmNlIERyLCBBbm5hbmRhbGUsIFZBIDIyMDAzLCBVU0EiGxIZChQKEgmLoOLlpU22iRFUR3j674HE9hDxLg";
-
-    const baseUrl =
-      "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&";
-    const param1 =
-      "origins=place_id:" +
-      placeIdOne +
-      "&destinations=place_id:" +
-      placeIdTwo +
-      "&key=" +
-      MY_API_KEY;
-
-    axios.get(baseUrl + param1).then(data => {
-      console.log(data);
+    const query = this.state.toolSearch;
+    console.log(this.state.toolSearch);
+    API.getProduct(query).then(res => {
+      this.setState({ searchResults: res.data });
+      console.log(this.state.searchResults);
     });
   };
+
   render() {
     const { search, value, searchResults } = this.state;
     return (
       <div>
-        <Navbar />
         <div className="container  ">
           <div className="center-align">
             <h2>Toolit</h2>
@@ -68,6 +61,7 @@ export default class Search extends Component {
                 type="text"
                 id="toolSearch"
                 placeholder="What tools do you need"
+                onChange={this.handleToolInputChange}
               />
 
               <div className="dialog" />
@@ -125,13 +119,12 @@ export default class Search extends Component {
         </div>
         {this.state.searchResults.map(searchResults => (
           <SearchResults
-            image={searchResults.image}
-            name={searchResults.name}
-            stock={searchResults.stock}
-            available={searchResults.available}
-            price={searchResults.price}
-            description={searchResults.description}
-            key={searchResults.image}
+            image={searchResults.Image}
+            name={searchResults.Product_Name}
+            stock={searchResults.Stock}
+            available={searchResults.Availability}
+            price={searchResults.UnitPrice}
+            key={searchResults.ProductID}
           />
         ))}
       </div>
@@ -140,3 +133,21 @@ export default class Search extends Component {
 }
 
 //
+
+// const placeIdOne = this.state.currentCustomer.placeId;
+//     const placeIdTwo =
+//       "Eio2MDAxIFBydWRlbmNlIERyLCBBbm5hbmRhbGUsIFZBIDIyMDAzLCBVU0EiGxIZChQKEgmLoOLlpU22iRFUR3j674HE9hDxLg";
+
+//     const baseUrl =
+//       "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&";
+//     const param1 =
+//       "origins=place_id:" +
+//       placeIdOne +
+//       "&destinations=place_id:" +
+//       placeIdTwo +
+//       "&key=" +
+//       MY_API_KEY;
+
+//     axios.get(baseUrl + param1).then(data => {
+//       console.log(data);
+//     });

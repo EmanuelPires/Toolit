@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@okta/okta-react": "^1.2.0",
+    "@okta/okta-signin-widget": "^2.18.0",
     "axios": "^0.18.0",
     "googleplaces": "^0.6.1",
     "react": "^16.8.6",

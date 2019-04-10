@@ -6,8 +6,15 @@ export default {
     console.log("Axios call");
     return axios.get("http://localhost:3001/api/user/customer");
   },
-  getorder: function(){
+
+  //gets products
+  getProduct: function(query) {
+    console.log("search axios call " + query);
+    return axios.get("http://localhost:3001/api/tool/toolsearch/" + query);
+  },
+
+  getorder: function() {
     console.log("Axios Call for Orders");
-    return axios.get("http://localhost:3001/api/user/order")
+    return axios.get("http://localhost:3001/api/user/order");
   }
 };

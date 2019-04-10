@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import Navbar from "../components/Navbar";
 import ProductMain from "../components/ProductMain";
 import Product from "../product.json";
 // import "./style.css";
@@ -12,13 +11,13 @@ class MyProducts extends Component {
   render() {
     return (
       <div>
-        <Navbar />
         <div className="container">
           <h1>My Products</h1>
 
           <div>
             {this.state.product.map(Product => (
-              <ProductMain key = {Product.id}
+              <ProductMain
+                key={Product.id}
                 name={Product.name}
                 supplier={Product.supplier}
                 price={Product.price}

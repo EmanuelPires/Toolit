@@ -1,98 +1,52 @@
-import React from "react";
+// import React, { Component } from "react";
+// import { Link } from "react-router-dom";
+// import { withAuth } from "@okta/okta-react";
 
-function UserLogin() {
-  return (
-    <div className="container">
-      <br />
-      <br />
-      <div className="white z-depth-2">
-        <ul className="tabs bg-#448aff blue accent-2">
-          <li className="tab col s3">
-            <a className="white-text active" href="#login">
-              login
-            </a>
-          </li>
-          <li className="tab col s3">
-            <a className="white-text" href="#register">
-              register
-            </a>
-          </li>
-        </ul>
-        <div id="login" className="col s12">
-          <form className="col s12">
-            <div className="form-container">
-              <h3 className="">Login</h3>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="email" type="email" className="validate" />
-                  <label for="email">Email</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="password" type="password" className="validate" />
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <br />
-              <center>
-                <button
-                  className="btn waves-effect waves-light bg-#448aff blue accent-2"
-                  type="submit"
-                  name="action"
-                >
-                  Login
-                </button>
-                <br />
-                <br />
-              </center>
-            </div>
-          </form>
-        </div>
-        <div id="register" className="col s12">
-          <form className="col s12">
-            <div className="form-container">
-              <h3 className="">Welcome</h3>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="name" type="text" className="validate" />
-                  <label for="name">Name</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="email" type="email" className="validate" />
-                  <label for="email">Email</label>
-                </div>
-              </div>
+// export default withAuth(
+//   class Home extends Component {
+//     state = { authenticated: null };
 
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="password" type="password" className="validate" />
-                  <label for="password">Password</label>
-                </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12">
-                  <input id="password2" type="password" className="validate" />
-                  <label for="password2">Password Confirmation</label>
-                </div>
-              </div>
-              <center>
-                <button
-                  className="btn waves-effect waves-light bg-#448aff blue accent-2"
-                  type="submit"
-                  name="action"
-                >
-                  Register
-                </button>
-              </center>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  );
-}
+//     checkAuthentication = async () => {
+//       const authenticated = await this.props.auth.isAuthenticated();
+//       if (authenticated !== this.state.authenticated) {
+//         this.setState({ authenticated });
+//       }
+//     };
 
-export default UserLogin;
+//     async componentDidMount() {
+//       this.checkAuthentication();
+//     }
+
+//     async componentDidUpdate() {
+//       this.checkAuthentication();
+//     }
+
+//     login = async () => {
+//       this.props.auth.login("/");
+//     };
+
+//     logout = async () => {
+//       this.props.auth.logout("/");
+//     };
+
+//     render() {
+//       if (this.state.authenticated === null) return null;
+
+//       const mainContent = this.state.authenticated ? (
+//         <div>
+//           <button className="btn btn-light btn-lg" onClick={this.logout}>
+//             Logout
+//           </button>
+//         </div>
+//       ) : (
+//         <div>
+//           <button className="btn btn-light btn-lg" onClick={this.login}>
+//             Login
+//           </button>
+//         </div>
+//       );
+
+//       return <div className="jumbotron bg-info">{mainContent}</div>;
+//     }
+//   }
+// );
