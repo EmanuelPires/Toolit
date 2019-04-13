@@ -36,3 +36,8 @@ h5 {
 .confirmation-tabs-btn {
   position: absolute;
 }
+#okta-sign-in.auth-container .button-primary {
+  background: #458aff !important;
+  border-color: #458aff !important;
+  color: white !important;
+}
