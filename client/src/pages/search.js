@@ -14,8 +14,27 @@ export default class Search extends Component {
     search: "",
     value: "",
     searchResults: [],
-    currentCustomer: "1"
+    currentCustomer: "1",
+    Email: '',
+    OKTA_ID: ''
   };
+
+  componentDidMount = e =>{
+    const keys = Object.keys(localStorage);
+    // console.log(Object.keys(localStorage));
+    console.log(keys[2]);
+    const token = keys[2]; 
+
+    const idToken = localStorage['okta-token-storage'];
+    const tokenjson = JSON.parse(idToken);
+    const tmp = tokenjson["idToken"];
+    const OKTA_ID = tmp["clientId"];
+    const Email = tmp.claims.email;
+    console.log(OKTA_ID);
+    console.log(Email);
+    console.log(tokenjson);
+  }
+
   handleToolInputChange = e => {
     this.setState({ toolSearch: e.target.value });
   };

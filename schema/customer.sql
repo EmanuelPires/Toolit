@@ -1,6 +1,7 @@
 INSERT INTO `toolit`.`customer`
 (`CustomerID`,
 `Name`,
+`OKTA_ID`,
 `Email`,
 `Password`,
 `Phone`,
@@ -11,4 +12,4 @@ INSERT INTO `toolit`.`customer`
 `Zipcode`,
 `PlaceID`)
 VALUES
-(1, 'Rachit', 'rachit5@gmail.com', '12345', '0000000000', 'abc', 'alexandria', 'VA', 'USA', '22314', '');
+(1, 'Rachit','', 'rachit5@gmail.com', '12345', '0000000000', 'abc', 'alexandria', 'VA', 'USA', '22314', '');

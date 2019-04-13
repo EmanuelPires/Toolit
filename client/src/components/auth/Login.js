@@ -9,7 +9,8 @@ export default withAuth(
       super(props);
 
       this.state = {
-        authenticated: null
+        authenticated: null,
+        sessionToken: ''
       };
       this.checkAuthentication();
     }
@@ -26,6 +27,8 @@ export default withAuth(
     }
 
     onSuccess = res => {
+      console.log(res);
+      debugger;
       if (res.status === "SUCCESS") {
         return this.props.auth.redirect({
           sessionToken: res.session.token
@@ -35,6 +38,12 @@ export default withAuth(
         // For more information about these states, see:
         //   https://github.com/okta/okta-signin-widget#rendereloptions-success-error
       }
+      this.setState({sessionToken:res.session.token});
+    };
+
+    clientID = res => {
+
+      console.log(this.state.sessionToken);
     };
 
     onError = err => {
@@ -49,6 +58,7 @@ export default withAuth(
         <SignInWidget
           baseUrl={this.props.baseUrl}
           onSuccess={this.onSuccess}
+          onSuccess1={this.clientID}
           onError={this.onError}
         />
       );

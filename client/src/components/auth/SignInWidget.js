@@ -11,7 +11,7 @@ class SignInWidget extends Component {
       baseUrl: this.props.baseUrl
     });
 
-    this.widget.renderEl({ el }, this.props.onSuccess, this.props.onError);
+    this.widget.renderEl({ el }, this.props.onSuccess, this.props.onError, this.props.onSuccess1);
   }
 
   componentWillUnmount() {

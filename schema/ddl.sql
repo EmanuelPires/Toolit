@@ -1,3 +1,4 @@
+Drop DATABASE toolit;
 create database toolit;
 use toolit;
 
@@ -7,6 +8,7 @@ create table customer (
 (11) NOT NULL AUTO_INCREMENT,
   `Name` varchar
 (255) DEFAULT NULL,
+`OKTA_ID` varchar(1000) NOT NULL,
   `Email` varchar
 (400) DEFAULT NULL,
   `Password` varchar
