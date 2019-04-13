@@ -25,7 +25,7 @@ function objToSql(ob) {
       }
       // e.g. {name: 'Lana Del Grey'} => ["name='Lana Del Grey'"]
       // e.g. {sleepy: true} => ["sleepy=true"]
-      arr.push(key + "=" + value);
+      arr.push(key + "= '" + value + "'");
     }
   }
 
@@ -95,7 +95,8 @@ var orm = {
     var queryString = "DELETE FROM toolit." + table;
     queryString += " WHERE ";
     queryString += condition;
-
+    console.log(queryString);
+    debugger;
     connection.query(queryString, function(err, result) {
       if (err) {
         throw err;

@@ -18,6 +18,7 @@ var product = {
     });
   },
   update: function(objColVals, condition, cb) {
+    console.log(objColVals);
     orm.update("product", objColVals, condition, function(res) {
       cb(res);
     });

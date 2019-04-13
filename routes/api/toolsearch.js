@@ -9,6 +9,14 @@ router.get("/toolsearch/:toolname", (req, res) => {
   });
 });
 
+router.get("/usertools/:id", (req, res) => {
+  var condition = " SupplierID= " + req.params.id;
+  console.log("query: " + condition);
+  product.selectWhere(condition, data => {
+    res.json(data);
+  });
+});
+
 module.exports = router;
 
 // app.get("/search/:productname", function(req, res) {
