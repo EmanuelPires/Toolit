@@ -2,9 +2,9 @@ import axios from "axios";
 
 export default {
   // Gets all books
-  getcustomer: function() {
-    console.log("Axios call");
-    return axios.get("http://localhost:3001/api/user/customer");
+  getcustomer: function(query) {
+    console.log("Axios call " + query);
+    return axios.get("http://localhost:3001/api/user/login/" + query);
   },
 
   //gets products
@@ -16,5 +16,31 @@ export default {
   getorder: function() {
     console.log("Axios Call for Orders");
     return axios.get("http://localhost:3001/api/user/order");
+  },
+
+  getUserProduct: function(id) {
+    console.log("Test");
+    return axios.get("http://localhost:3001/api/tool/usertools/" + id);
+  },
+
+  updateMyProduct: function(query, values) {
+    console.log(
+      "hello from client side API, query: " +
+        query +
+        " Values: " +
+        JSON.stringify(values)
+    );
+    //values = JSON.parse(values);
+    return axios.put(
+      "http://localhost:3001/api/product/updatemyproduct/" + query,
+      values
+    );
+  },
+
+  DeleteProduct: function(id) {
+    console.log("Delete Product API" + id);
+    return axios.delete(
+      "http://localhost:3001/api/product/deleteproduct/" + id
+    );
   }
 };
