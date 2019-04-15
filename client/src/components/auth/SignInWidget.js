@@ -24,7 +24,13 @@ class SignInWidget extends Component {
   }
 
   render() {
-    return <div />;
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col s12" />
+        </div>
+      </div>
+    );
   }
 }
 
