@@ -41,9 +41,22 @@ class Profile extends Component {
         <br />
         <br />
         <br />
+        <div className="card hoverable z-depth-3 show-on-small-only hide-on-med-and-up">
+          <div className="card-image">
+            <img src={this.state.image} className="responsive-img" />{" "}
+          </div>
+          <div className="card-content">
+            <ul>
+              <li>{this.state.name}</li>
+              <li>{this.state.email}</li>
+              <li>{this.state.address}</li>
+              <li>{this.state.phone}</li>
+            </ul>
+          </div>
+        </div>
         <div className="row">
           <div className="col s3">
-            <div className="card">
+            <div className="card hoverable z-depth-3 hide-on-small-only">
               <div className="card-image">
                 <img src={this.state.image} className="responsive-img" />{" "}
               </div>
