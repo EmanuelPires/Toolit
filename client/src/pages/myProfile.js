@@ -1,20 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
 import Profile from "../components/Profile";
-<<<<<<< HEAD
-// import "./style.css";
-
-function myProfile() {
-  return (
-    <div>
-      <Navbar />
-      <Profile />
-    </div>
-  );
-}
-
-export default myProfile;
-=======
 import API from "../utils/API";
 import axios from "axios";
 // import "./style.css";
@@ -49,4 +35,3 @@ export default class myProfile extends Component {
     );
   }
 }
->>>>>>> 288b147f4853a1f6d764055759a048e30f251c89

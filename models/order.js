@@ -1,6 +1,11 @@
 var orm = require("../config/orm.js");
 
 var order = {
+  selectWhereOrder: function(condition, cb) {
+    orm.selectWhereOrder("order", "product", condition, function(res) {
+      cb(res);
+    });
+  },
     all: function(cb) {
       orm.all("order",  function(res) {
         cb(res);

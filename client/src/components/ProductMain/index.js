@@ -24,9 +24,7 @@ const ProductMain = props => (
           <div className="card-image">
             <img
               className="img-responsive"
-              src="data:image/jpeg;base64,{props.image}"
-              width="100px"
-              height="100px"
+              src={props.image}
             />
           </div>
           <div className="card-stacked">

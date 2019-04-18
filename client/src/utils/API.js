@@ -42,5 +42,19 @@ export default {
     return axios.delete(
       "http://localhost:3001/api/product/deleteproduct/" + id
     );
+  },
+
+  getorders: function(id){
+    console.log("Get the orders for the customerid "+id);
+    return axios.get(
+      "http://localhost:3001/api/order/getorders/"+id
+    );
+  },
+
+  SaveFeedback: function(feedback){
+    console.log("Taking the Feedback");
+    return axios.post(
+      "http://localhost:3001/api/review/feedback", feedback
+    )
   }
 };

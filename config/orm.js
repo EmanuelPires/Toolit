@@ -32,86 +32,20 @@ function objToSql(ob) {
   // translate array of strings to a single comma-separated string
   return arr.toString();
 }
-<<<<<<< HEAD
-  
-  var orm = {
-
-    selectWhere: function(table, condition, cb) {
-      var queryString = "SELECT * FROM toolit." + table + " WHERE" + condition;
-      console.log(queryString);
-      connection.query(queryString, function(err, result) {
-        if (err) throw err;
-        cb(result);
-      });
-    },
-    all: function(tableInput, cb) {
-      var queryString = "SELECT * FROM toolit." + tableInput + ";";
-      console.log(queryString);
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-        cb(result);
-      });
-    },
-    create: function(table, cols, vals, cb) {
-        var queryString = "INSERT INTO toolit." + table;
-    
-        queryString += " (";
-        queryString += cols.toString();
-        queryString += ") ";
-        queryString += "VALUES (";
-        queryString += printQuestionMarks(vals.length);
-        queryString += ") ";
-    
-        console.log(queryString);
-    
-        connection.query(queryString, vals, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
-          cb(result);
-        });
-    },
-    update: function(table, objColVals, condition, cb) {
-        var queryString = "UPDATE toolit." + table;
-    
-        queryString += " SET ";
-        queryString += objToSql(objColVals);
-        queryString += " WHERE ";
-        queryString += condition;
-    
-        console.log(queryString);
-        connection.query(queryString, function(err, result) {
-          if (err) {
-            throw err;
-          }
-    
-          cb(result);
-        });
-      },
-    
-    delete: function(table, condition, cb) {
-      var queryString = "DELETE FROM toolit." + table;
-      queryString += " WHERE ";
-      queryString += condition;
-  
-      connection.query(queryString, function(err, result) {
-        if (err) {
-          throw err;
-        }
-  
-        cb(result);
-      });
-    }  
-    };
-=======
 
 var orm = {
   selectWhere: function(table, condition, cb) {
     var queryString = "SELECT * FROM toolit." + table + " WHERE" + condition;
 
+    console.log(queryString);
+    connection.query(queryString, function(err, result) {
+      if (err) throw err;
+      cb(result);
+    });
+  },
+  selectWhereOrder: function(table1, table2, condition, cb) {
+    var queryString = "SELECT * FROM toolit." + table1 +" tb1 INNER JOIN toolit."+ 
+                      table2+" tb2 on tb1.FK_ProductID = tb2.ProductID WHERE tb1." + condition;
     console.log(queryString);
     connection.query(queryString, function(err, result) {
       if (err) throw err;
@@ -129,7 +63,7 @@ var orm = {
     });
   },
   create: function(table, cols, vals, cb) {
-    var queryString = "INSERT INTO " + table;
+    var queryString = "INSERT INTO toolit." + table;
 
     queryString += " (";
     queryString += cols.toString();
@@ -139,7 +73,7 @@ var orm = {
     queryString += ") ";
 
     console.log(queryString);
-
+    console.log(vals);
     connection.query(queryString, vals, function(err, result) {
       if (err) {
         throw err;
@@ -181,6 +115,5 @@ var orm = {
     });
   }
 };
->>>>>>> 288b147f4853a1f6d764055759a048e30f251c89
 
 module.exports = orm;
