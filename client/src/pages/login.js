@@ -67,8 +67,8 @@ export default class Login extends Component {
 
 
   handleUpload = () => {
-    const {image,id} = this.state;
-    const name = id+"_"+image.name;
+    const {image} = this.state;
+    const name = image.name+"_"+Date.now();
     console.log(name); 
     const uploadTask = storage.ref(`images/${name}`).put(image);
     uploadTask.on('state_changed', 
@@ -96,6 +96,8 @@ export default class Login extends Component {
         <Test name={this.state.customer.Name} order={this.state.order.OrderDate}/>
         <button onClick={this.loadcustomer} >Test</button>
         <button onClick={this.loadorder}>Test Order</button>
+        <br/>
+        <progress value={this.state.progress} max="100"/>
         <br/>
         <input type="file" onChange={this.handleChange}/>
         <button onClick={this.handleUpload}>Upload</button> 

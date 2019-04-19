@@ -1,21 +1,30 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
 import ProductMain from "../components/ProductMain";
-
+import GooglePlaceInput from "../components/GooglePlaceInput";
+import GoogePlaceInputOnPage from "../components/GooglePlaceInputOnPage";
+import GooglePlacesSuggest from "react-google-places-suggest";
 import API from "../utils/API";
 
 import { Modal, Button } from "react-materialize";
+import GooglePlaceInputOnPage from "../components/GooglePlaceInputOnPage";
+const MY_API_KEY = "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410";
 
 const trigger = <Button>Open Modal</Button>;
 // import "./style.css";
 
 class MyProducts extends Component {
   state = {
-    user: 1,
+    user: 4,
     products: [],
     Product_Name: "",
     Price: "",
-    Stock: ""
+    Stock: "",
+    Availability: "",
+    Image: "",
+    value: "",
+    search: "",
+    placeID: ""
   };
 
   componentDidMount() {
@@ -44,11 +53,18 @@ class MyProducts extends Component {
   updateValueFunction = () => {
     const updateValues = {
       Product_Name: this.state.Product_Name,
-      Price: this.state.Price,
-      Stock: this.state.Stock
+      UnitPrice: this.state.Price,
+      Stock: this.state.Stock,
+      placeID: this.state.placeID
     };
     return updateValues;
   };
+
+  placeIDFunction = id => {
+    this.setState({ placeID: id });
+    console.log(this.state.placeID);
+  };
+
   Products = () => {
     const query = this.state.user;
     console.log("hello this is the query: " + query);
@@ -64,7 +80,25 @@ class MyProducts extends Component {
     console.log(updateValues);
     API.updateMyProduct(id, updateValues).then(res => {
       console.log(res.data);
+      this.getProducts();
     });
+  };
+
+  addNewProduct = () => {
+    const object = {
+      Product_Name: this.state.Product_Name,
+      UnitPrice: this.state.Price,
+      Stock: this.state.Stock,
+      Availability: this.state.Availability,
+      ProductPlaceID: this.state.placeID,
+      Image: this.state.Image
+    };
+
+    console.log(object);
+    // API.AddProduct(object).then(res => {
+    //   console.log(res.data);
+    //   this.getProducts();
+    // });
   };
 
   DeleteProduct = id => {
@@ -73,6 +107,16 @@ class MyProducts extends Component {
       console.log(res.data);
       this.getProducts();
     });
+  };
+
+  image = image => {
+    console.log(image);
+    var base64String = btoa(
+      String.fromCharCode.apply(null, new Uint8Array(image.data))
+    );
+    const img = "data:image/jpeg;base64," + base64String;
+
+    return img;
   };
 
   hexToBase64 = str => {
@@ -88,77 +132,57 @@ class MyProducts extends Component {
     );
   };
 
-  encode = (arrayBuffer) => {
-    var base64    = ''
-    var encodings = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
-  
-    var bytes         = new Uint8Array(arrayBuffer)
-    var byteLength    = bytes.byteLength
-    var byteRemainder = byteLength % 3
-    var mainLength    = byteLength - byteRemainder
-  
-    var a, b, c, d
-    var chunk
-  
-    // Main loop deals with bytes in chunks of 3
-    for (var i = 0; i < mainLength; i = i + 3) {
-      // Combine the three bytes into a single integer
-      chunk = (bytes[i] << 16) | (bytes[i + 1] << 8) | bytes[i + 2]
-  
-      // Use bitmasks to extract 6-bit segments from the triplet
-      a = (chunk & 16515072) >> 18 // 16515072 = (2^6 - 1) << 18
-      b = (chunk & 258048)   >> 12 // 258048   = (2^6 - 1) << 12
-      c = (chunk & 4032)     >>  6 // 4032     = (2^6 - 1) << 6
-      d = chunk & 63               // 63       = 2^6 - 1
-  
-      // Convert the raw binary segments to the appropriate ASCII encoding
-      base64 += encodings[a] + encodings[b] + encodings[c] + encodings[d]
-    }
-  
-    // Deal with the remaining bytes and padding
-    if (byteRemainder == 1) {
-      chunk = bytes[mainLength]
-  
-      a = (chunk & 252) >> 2 // 252 = (2^6 - 1) << 2
-  
-      // Set the 4 least significant bits to zero
-      b = (chunk & 3)   << 4 // 3   = 2^2 - 1
-  
-      base64 += encodings[a] + encodings[b] + '=='
-    } else if (byteRemainder == 2) {
-      chunk = (bytes[mainLength] << 8) | bytes[mainLength + 1]
-  
-      a = (chunk & 64512) >> 10 // 64512 = (2^6 - 1) << 10
-      b = (chunk & 1008)  >>  4 // 1008  = (2^6 - 1) << 4
-  
-      // Set the 2 least significant bits to zero
-      c = (chunk & 15)    <<  2 // 15    = 2^4 - 1
-  
-      base64 += encodings[a] + encodings[b] + encodings[c] + '='
-    }
-    
-    return base64
-  }
-
-  image = image => {
-    debugger
-    var base64String = btoa(String.fromCharCode.apply(null, new Uint8Array(image.data)));
-    const img = "data:image/png;base64," + base64String;
-    console.log(img); 
-    return img
-    
-  };
-
   render() {
-
-
     return (
       <div>
         <Navbar />
 
         <div className="container">
           <h1>My Products</h1>
-
+          <Modal
+            header="Product Update"
+            trigger={<Button>Add an Item</Button>}
+            actions={
+              <Button className="updateButton" onClick={this.addNewProduct}>
+                Add Your Item
+              </Button>
+            }
+          >
+            <form>
+              Product_Name: <br />
+              <input
+                type="text"
+                onChange={this.handleUpdateValueChange}
+                name="Product_Name"
+              />
+              UnitPrice: <br />
+              <input
+                type="text"
+                name="Price"
+                onChange={this.handleUpdateValueChange}
+              />
+              Stock: <br />
+              <input
+                type="text"
+                name="Stock"
+                onChange={this.handleUpdateValueChange}
+              />
+              Availability: <br />
+              <input
+                type="text"
+                name="Availability"
+                onChange={this.handleUpdateValueChange}
+              />
+              Location: <br />
+              <GooglePlaceInputOnPage placeID={this.placeIDFunction} />
+              Upload Image: <br />
+              <input
+                type="file"
+                name="Image"
+                onChange={this.handleUpdateValueChange}
+              />
+            </form>
+          </Modal>
           <div>
             {this.state.products.map(Product => (
               <ProductMain
@@ -180,6 +204,8 @@ class MyProducts extends Component {
                 productPrice={this.state.Price}
                 productStock={this.state.Stock}
                 DeleteProduct={() => this.DeleteProduct(Product.ProductID)}
+                placeIDFunction={this.placeIDFunction}
+                googleinput={this.state.googleinput}
               />
             ))}
           </div>

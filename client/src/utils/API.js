@@ -56,5 +56,19 @@ export default {
     return axios.post(
       "http://localhost:3001/api/review/feedback", feedback
     )
+  },
+
+  updateMyProfile: function(query, values) {
+    console.log(
+      "hello from client side API, query: " +
+        query +
+        " Values: " +
+        JSON.stringify(values)
+    );
+    //values = JSON.parse(values);
+    return axios.put(
+      "http://localhost:3001/api/customer/updatemyprofile/" + query,
+      values
+    );
   }
 };

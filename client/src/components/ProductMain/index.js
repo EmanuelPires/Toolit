@@ -1,6 +1,8 @@
 import React from "react";
 import { Modal, Button } from "react-materialize";
 
+import GooglePlaceInput from "../GooglePlaceInput";
+
 // const getValues = () => {
 //   document
 //     .getElementsByClassName("updateButton")
@@ -25,6 +27,8 @@ const ProductMain = props => (
             <img
               className="img-responsive"
               src={props.image}
+              width="100px"
+              height="100px"
             />
           </div>
           <div className="card-stacked">
@@ -54,7 +58,11 @@ const ProductMain = props => (
               header="Product Update"
               trigger={<Button>Update</Button>}
               actions={
-                <Button onClick={props.updateProduct} className="updateButton">
+                <Button
+                  onClick={props.updateProduct}
+                  className="updateButton"
+                  modal="close"
+                >
                   Update Your Item
                 </Button>
               }
@@ -77,6 +85,11 @@ const ProductMain = props => (
                   type="text"
                   name="Stock"
                   onChange={props.handleUpdateValueChange}
+                />
+                Location: <br />
+                <GooglePlaceInput
+                  googleinput={props.googleinput}
+                  placeIDFunction={props.placeIDFunction}
                 />
               </form>
             </Modal>
