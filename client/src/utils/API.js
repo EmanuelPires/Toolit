@@ -1,6 +1,14 @@
 import axios from "axios";
 
 export default {
+  createCustomer: function(obj) {
+    console.log("Creating Customer" + obj);
+    return axios.post("http://localhost:3001/api/user/newuser/", obj);
+  },
+  getCustomerWithEmail: function(email) {
+    console.log("getting the customer with email from OKTA");
+    return axios.get("http://localhost:3001/api/user/login/" + email);
+  },
   // Gets all books
   getcustomer: function() {
     console.log("Axios call");

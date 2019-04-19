@@ -14,7 +14,7 @@ export default class Search extends Component {
     search: "",
     value: "",
     searchResults: [],
-    currentCustomer: "1"
+    currentCustomer: {}
   };
   handleToolInputChange = e => {
     this.setState({ toolSearch: e.target.value });
@@ -30,6 +30,39 @@ export default class Search extends Component {
 
   handleNoResult = () => {
     console.log("No results for ", this.state.search);
+  };
+
+  componentDidMount = e => {
+    const keys = Object.keys(localStorage);
+    // console.log(Object.keys(localStorage));
+    console.log(keys[2]);
+    const token = keys[2];
+
+    const idToken = localStorage["okta-token-storage"];
+    const tokenjson = JSON.parse(idToken);
+    const tmp = tokenjson["idToken"];
+    const OKTA_ID = tmp["clientId"];
+    const Email = tmp.claims.email;
+    console.log(OKTA_ID);
+    console.log(Email);
+    console.log(tokenjson);
+
+    API.getCustomerWithEmail(Email)
+      .then(res => {
+        console.log(res);
+        this.setState({ currentCustomer: res });
+        console.log(this.state.currentCustomer);
+      })
+      .catch(err => {
+        console.log(err);
+        let obj = {
+          CustomerEmail: Email,
+          OktaID: OKTA_ID
+        };
+        API.createCustomer(obj).then(response => {
+          console.log(response);
+        });
+      });
   };
 
   handleSearch = event => {
