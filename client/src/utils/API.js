@@ -78,5 +78,28 @@ export default {
       "http://localhost:3001/api/customer/updatemyprofile/" + query,
       values
     );
+  },
+
+  distanceCalculator: function(id1,id2){
+
+    console.log("Distance Testing");
+    return axios.get("http://localhost:3001/api/tool/distance/"+id1+"/"+id2)
+  },
+
+  AddProduct: function(obj) {
+    console.log("Adding New Product");
+    
+    return axios.post(
+      "http://localhost:3001/api/product/addproduct/", obj
+    )
+  },
+
+  NewOrder: function(obj) {
+    console.log("API Adding New Product");
+
+    return axios.post(
+      "http://localhost:3001/api/order/NewOrder/", obj
+    );
   }
+
 };

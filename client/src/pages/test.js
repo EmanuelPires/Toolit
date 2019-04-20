@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Test from "../components/Test";
 import API from "../utils/API";
 import {storage} from '../Firebase'; 
+import axios from 'axios';
 
 
 
@@ -66,6 +67,38 @@ export default class Login extends Component {
   };
 
 
+  distancecalculation = e =>{
+    e.preventDefault();
+    const MY_API_KEY = "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410";
+
+    const placeIdOne = "ChIJjWklvpNLtokRtcTMzgqIVLE";
+    const placeIdTwo =
+      "Eio2MDAxIFBydWRlbmNlIERyLCBBbm5hbmRhbGUsIFZBIDIyMDAzLCBVU0EiGxIZChQKEgmLoOLlpU22iRFUR3j674HE9hDxLg";
+
+    const baseUrl =
+      "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&";
+    const param1 =
+      "origins=place_id:" +
+      placeIdOne +
+      "&destinations=place_id:" +
+      placeIdTwo +
+      "&key=" +
+      MY_API_KEY;
+
+      const obj= {
+        placeIdOne: "ChIJjWklvpNLtokRtcTMzgqIVLE",
+        placeIdTwo: "Eio2MDAxIFBydWRlbmNlIERyLCBBbm5hbmRhbGUsIFZBIDIyMDAzLCBVU0EiGxIZChQKEgmLoOLlpU22iRFUR3j674HE9hDxLg",
+        MY_API_KEY: "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410"
+      }
+
+      API.distanceCalculator(placeIdOne, placeIdTwo).then(data=>{
+        console.log(data)
+      })
+
+  
+  }
+
+
   handleUpload = () => {
     const {image} = this.state;
     const name = image.name+"_"+Date.now();
@@ -101,6 +134,8 @@ export default class Login extends Component {
         <br/>
         <input type="file" onChange={this.handleChange}/>
         <button onClick={this.handleUpload}>Upload</button> 
+
+        <button onClick={this.distancecalculation}>Calculate</button> 
       </div>
     );
 

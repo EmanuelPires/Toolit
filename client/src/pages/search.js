@@ -70,13 +70,32 @@ export default class Search extends Component {
   handleSearch = event => {
     event.preventDefault();
     console.log("submit button clicked");
-    const query = this.state.toolSearch;
+    const query = this.state.toolSearch.toUpperCase();
     console.log(this.state.toolSearch);
     API.getProduct(query).then(res => {
       this.setState({ searchResults: res.data });
       console.log(this.state.searchResults);
     });
   };
+
+  NewOrder = (result, e) => {
+    e.preventDefault();
+    console.log("Adding New order");
+    const obj = {
+      OrderCost: result.UnitPrice*1,
+      Quantity: 1,
+      FK_CustomerID: result.SupplierID,
+      FK_ProductID: result.ProductID
+    };
+    console.log(obj);
+    debugger;
+    API.NewOrder(obj).then(res =>{
+      console.log(res);
+      alert("Thank you for you order!");
+    });
+    
+  };
+
 
   render() {
     const { search, value, searchResults } = this.state;
@@ -160,6 +179,7 @@ export default class Search extends Component {
             stock={searchResults.Stock}
             available={searchResults.Availability}
             price={searchResults.UnitPrice}
+            NewOrder = {(e)=>this.NewOrder(searchResults,e)}
             key={searchResults.ProductID}
           />
         ))}

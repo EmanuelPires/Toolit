@@ -20,7 +20,11 @@ const SearchResults = props => (
               </ul>
 
               <div className="card-action">
-                <a href="#">Rent</a>
+              {/* <Link
+              to="/myorders">
+             Rent<i className="fas fa-shopping-cart" id="orders" />
+            </Link> */}
+                <a href="/myorders" onClick={props.NewOrder}>Rent</a>
               </div>
             </div>
           </div>

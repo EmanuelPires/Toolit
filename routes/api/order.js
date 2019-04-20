@@ -11,6 +11,15 @@ router.get("/getorders/:id", (req, res) =>{
     }) ;
 });
 
+router.post("/NewOrder", (req,res) =>{
+    const cols = ['OrderCost', 'Quantity', 'FK_CustomerID','FK_ProductID'];
+    const vals = [req.body.OrderCost, req.body.Quantity, req.body.FK_CustomerID, req.body.FK_ProductID];
+
+    order.create(cols, vals, data =>{
+        res.json(data);
+    });
+});
+
 
 module.exports = router;
 

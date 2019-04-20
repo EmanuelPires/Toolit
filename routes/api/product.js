@@ -7,7 +7,7 @@ router.put("/updatemyproduct/:query", (req, res) => {
   console.log(condition);
   var obj = {
     Product_Name: req.body.Product_Name,
-    UnitPrice: req.body.Price,
+    UnitPrice: req.body.UnitPrice,
     Stock: req.body.Stock
   };
   console.log(obj);
@@ -23,6 +23,18 @@ router.delete("/deleteproduct/:id", (req, res) => {
   products.delete(condition, data => {
     res.json(data);
   });
+});
+
+router.post("/addproduct", (req,res) => {
+  console.log("Add Product Testing");
+  const cols = ['Product_Name', 'UnitPrice', 'Stock','Availability','ProductPlaceID', 'Image', 'SupplierID','FK_CategoryID'];
+  const vals = [req.body.Product_Name, req.body.UnitPrice, req.body.Stock, req.body.Availability, req.body.ProductPlaceID, 
+                req.body.Image, req.body.SupplierID, req.body.FK_CategoryID] ;
+  
+  products.create(cols, vals, data => {
+    res.json(data);
+  });
+  
 });
 
 module.exports = router;

@@ -38,9 +38,6 @@ const ProductMain = props => (
                   <strong>Product Name:</strong> {props.name}
                 </li>
                 <li>
-                  <strong>Owner :</strong> {props.supplier}
-                </li>
-                <li>
                   <strong>price :</strong> ${props.price}
                 </li>
                 <li>

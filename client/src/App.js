@@ -6,6 +6,7 @@ import "./App.css";
 import MyProfile from "./pages/myProfile";
 import myOrders from "./pages/myOrders";
 import MyProducts from "./pages/myProducts";
+import test from "./pages/test";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Security, SecureRoute, ImplicitCallback } from "@okta/okta-react";
 import Login from "./components/auth/Login";
@@ -38,6 +39,7 @@ class App extends Component {
                   <SecureRoute path="/search" exact={true} component={Search} />
                   <SecureRoute path="/myProfile" exact={true} component={MyProfile} />
                   <SecureRoute path="/myOrders" exact={true} component={myOrders} />
+                  <SecureRoute path="/test" exact={true} component={test} />
                   <SecureRoute
                     path="/MyProducts"
                     exact={true}

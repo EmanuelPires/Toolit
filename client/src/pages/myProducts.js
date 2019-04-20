@@ -58,7 +58,7 @@ class MyProducts extends Component {
 
   updateValueFunction = () => {
     const updateValues = {
-      Product_Name: this.state.Product_Name,
+      Product_Name: this.state.Product_Name.toUpperCase(),
       UnitPrice: this.state.Price,
       Stock: this.state.Stock,
       placeID: this.state.placeID
@@ -92,19 +92,21 @@ class MyProducts extends Component {
 
   addNewProduct = () => {
     const object = {
-      Product_Name: this.state.Product_Name,
+      Product_Name: this.state.Product_Name.toUpperCase(),
       UnitPrice: this.state.Price,
       Stock: this.state.Stock,
       Availability: this.state.Availability,
       ProductPlaceID: this.state.placeID,
-      Image: this.state.Image
+      Image: this.state.imageurl,
+      SupplierID: this.state.user,
+      FK_CategoryID: 1
     };
 
     console.log(object);
-    // API.AddProduct(object).then(res => {
-    //   console.log(res.data);
-    //   this.getProducts();
-    // });
+    API.AddProduct(object).then(res => {
+      console.log(res.data);
+      this.getProducts();
+    });
   };
 
   DeleteProduct = id => {
@@ -113,29 +115,6 @@ class MyProducts extends Component {
       console.log(res.data);
       this.getProducts();
     });
-  };
-
-  image = image => {
-    console.log(image);
-    var base64String = btoa(
-      String.fromCharCode.apply(null, new Uint8Array(image.data))
-    );
-    const img = "data:image/jpeg;base64," + base64String;
-
-    return img;
-  };
-
-  hexToBase64 = str => {
-    return btoa(
-      String.fromCharCode.apply(
-        null,
-        str
-          .replace(/\r|\n/g, "")
-          .replace(/([\da-fA-F]{2}) ?/g, "0x$1 ")
-          .replace(/ +$/, "")
-          .split(" ")
-      )
-    );
   };
 
 
@@ -187,7 +166,7 @@ class MyProducts extends Component {
             header="Product Update"
             trigger={<Button>Add an Item</Button>}
             actions={
-              <Button className="updateButton" onClick={this.addNewProduct}>
+              <Button className="updateButton" onClick={this.addNewProduct} modal="close">
                 Add Your Item
               </Button>
             }
@@ -220,11 +199,14 @@ class MyProducts extends Component {
               Location: <br />
               <GooglePlaceInputOnPage placeID={this.placeIDFunction} />
               Upload Image: <br />
+              <progress value={this.state.progress} max="100"/>
+              <br/> 
               <input
                 type="file"
-                name="Image"
-                onChange={this.handleUpdateValueChange}
+                name="imageFile"
+                onChange={(e)=>{this.handleChange(e)}}
               />
+              <button onClick={(e)=>{this.handleUpload(e)}}>Upload Image</button> 
             </form>
           </Modal>
           <div>
@@ -234,8 +216,8 @@ class MyProducts extends Component {
                 name={Product.Product_Name}
                 price={Product.UnitPrice}
                 stock={Product.Stock}
-                available={Product.available}
-                image={this.image(Product.Image)}
+                available={Product.Availability}
+                image={Product.Image}
                 description={Product.description}
                 updateProduct={() =>
                   this.updateMyProduct(
