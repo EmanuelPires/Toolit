@@ -94,6 +94,11 @@ export default {
     )
   },
 
+  createCustomer: function(obj) {
+    console.log("Creating a customer");
+    return axios.post("http://localhost:3001/api/user/newuser/", obj);
+  },
+
   NewOrder: function(obj) {
     console.log("API Adding New Product");
 

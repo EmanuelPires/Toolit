@@ -55,7 +55,7 @@ export default class Search extends Component {
         console.log(this.state.currentCustomer);
       })
 
-      if (!this.state.currentCustomer){
+      if (!this.state.currentCustomer.data){
         let obj = {
           CustomerEmail: Email,
           OktaID: OKTA_ID
