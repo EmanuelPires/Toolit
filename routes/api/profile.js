@@ -6,8 +6,9 @@ router.put("/updatemyprofile/:query", (req, res) => {
   var condition = "CustomerID= " + req.params.query;
   console.log(condition);
   var obj = {
-    Name: req.body.Name,
+    Name: "'"+req.body.Name+"'",
     Email: req.body.Email,
+    Phone: req.body.Phone,
     PlaceID: req.body.PlaceID,
     Image: req.body.Image
   };

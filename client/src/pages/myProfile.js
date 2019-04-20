@@ -20,17 +20,22 @@ export default class myProfile extends Component {
     imageFile: "",
     Name: "",
     Email: "",
-    Phone: ""
+    Phone: "",
+    imageurl: '',
+    progress: 0,
+    Address:''
   };
 
-  updateMyProfile = id => {
-    let imageData = this.readImageFile(this.state.imageFile);
+
+  updateMyProfile = (id, e) => {
+    e.preventDefault();
     let updateValues = {
       Name: this.state.Name,
       Email: this.state.Email,
       Phone: this.state.Phone,
       PlaceID: this.state.searchPlaceID,
-      Image: imageData
+      Image: this.state.imageurl,
+      Address: this.state.value
     };
     console.log(updateValues);
     debugger;
@@ -40,8 +45,10 @@ export default class myProfile extends Component {
     window.location.reload();
   };
 
-  componentDidMount() {
+  componentDidMount=() =>{
     this.getUser();
+    console.log(this.state);
+    debugger;
   }
 
   getUser = () => {
@@ -59,24 +66,14 @@ export default class myProfile extends Component {
 
 
   handleInputChange = e => {
+    e.preventDefault();
     this.setState({
       search: e.target.value,
       value: e.target.value
     });
+    this.handleUpdateValueChange(e);
   };
 
-  fileSelectedHander = event => {
-    console.log(event.target.files[0]);
-    const reader = new FileReader();
-    reader.onload = () => {
-      debugger;
-      var dataURL = reader.result;
-      this.setState({
-        imageFile: dataURL
-      });
-    };
-    reader.readAsDataURL(event.target.files[0]);
-  };
 
   handleUpdateValueChange = event => {
     event.preventDefault();
@@ -108,14 +105,6 @@ export default class myProfile extends Component {
     });
   };
 
-  updateMyImage = () => {
-    const data = this.state.imageFile;
-    debugger;
-    console.log("data", data);
-    API.UpdateImage(data).then(res => {
-      console.log(res);
-    });
-  };
 
   handleNoResult = () => {
     console.log("No results for ", this.state.search);
@@ -124,6 +113,45 @@ export default class myProfile extends Component {
   placeIDConsoleLog = () => {
     console.log(this.state.searchPlaceID);
   };
+
+  handleChange = e => {
+    e.preventDefault();
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState(() => ({image}));
+    }
+    debugger;
+  };
+
+
+  handleUpload = (e) => {
+    e.preventDefault();
+    const {image} = this.state;
+    const name = image.name+"_"+Date.now();
+    console.log(name); 
+    const uploadTask = storage.ref(`images/${name}`).put(image);
+    uploadTask.on('state_changed', 
+    (snapshot) => {
+      // progrss function ....
+      const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      this.setState({progress});
+    }, 
+    (error) => {
+         // error function ....
+      console.log(error);
+    }, 
+  () => {
+      // complete function ....
+      storage.ref('images').child(name).getDownloadURL().then(url => {
+          console.log(url);
+          this.setState({imageurl: url});
+      })
+      debugger;
+  });
+
+};
+
+
   render() {
     const { search, value, searchResults } = this.state;
 
@@ -139,7 +167,7 @@ export default class myProfile extends Component {
               <div className="card">
                 <div className="card-image">
                   <img
-                    src=""
+                    src={this.state.userLoggedIn.Image}
                     alt="https://via.placeholder.com/150"
                     className="responsive-img"
                   />
@@ -214,6 +242,7 @@ export default class myProfile extends Component {
                                   value={value}
                                   placeholder="Search a location"
                                   onChange={this.handleInputChange}
+                                  name="Address"
                                 />
                               </GooglePlacesSuggest>
                             )
@@ -237,15 +266,18 @@ export default class myProfile extends Component {
                   <div className="row">
                     <p>Update Your Profile Pic:</p>
                     <div className="input-field col s12">
+                      <progress value={this.state.progress} max="100"/>
+                      <br/> 
                       <input
                         type="file"
                         name="imageFile"
-                        onChange={this.fileSelectedHander}
+                        onChange={(e)=>{this.handleChange(e)}}
                       />
+                      <button onClick={(e)=>{this.handleUpload(e)}}>Upload Image</button> 
                     </div>
                   </div>
                 </form>
-                <Button onClick={this.updateMyImage}>Submit</Button>
+                <Button onClick={(e)=>this.updateMyProfile(this.state.user, e)}>Submit</Button>
               </div>
             </div>
           </div>

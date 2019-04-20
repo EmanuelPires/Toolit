@@ -21,9 +21,47 @@ router.get("/customer", (req, res) => {
   });
 });
 
+
+router.post("/newuser", (req, res) => {
+  console.log("NEW CUSTOMER");
+  const cols = [
+    "Name",
+    "OKTA_ID",
+    "Email",
+    "Password",
+    "Phone",
+    "PlaceID",
+    "Image",
+    "Address"
+  ];
+  const vals = [
+    "",
+    req.body.OktaID,
+    req.body.CustomerEmail,
+    "",
+    "",
+    "",
+    "",
+    ""
+  ];
+
+  customer.create(cols, vals, cb => {
+    res.json(cb);
+  });
+});
+
 router.get("/order", (req, res) => {
   console.log("Test");
   order.all(data => {
+    res.json(data);
+  });
+});
+
+router.get("/email/:email", (req, res) => {
+  var condition = " Email='" + req.params.email + "'";
+
+  console.log(condition);
+  customer.selectWhere(condition, data => {
     res.json(data);
   });
 });

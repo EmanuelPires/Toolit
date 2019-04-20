@@ -8,14 +8,17 @@ import API from "../utils/API";
 
 import { Modal, Button } from "react-materialize";
 import GooglePlaceInputOnPage from "../components/GooglePlaceInputOnPage";
+import {storage} from '../Firebase'; 
+
 const MY_API_KEY = "AIzaSyB_aSR45DHCAraJSCrm20csNj_X4LG6410";
+
 
 const trigger = <Button>Open Modal</Button>;
 // import "./style.css";
 
 class MyProducts extends Component {
   state = {
-    user: 4,
+    user: 1,
     products: [],
     Product_Name: "",
     Price: "",
@@ -24,12 +27,15 @@ class MyProducts extends Component {
     Image: "",
     value: "",
     search: "",
-    placeID: ""
+    placeID: "",
+    imageurl: '',
+    progress: 0
   };
 
   componentDidMount() {
     this.getProducts();
   }
+
   getProducts = () => {
     const id = this.state.user;
     console.log("hello this is the query: " + id);
@@ -131,6 +137,44 @@ class MyProducts extends Component {
       )
     );
   };
+
+
+  handleChange = e => {
+    e.preventDefault();
+    if (e.target.files[0]) {
+      const image = e.target.files[0];
+      this.setState(() => ({image}));
+    }
+    debugger;
+  };
+
+
+  handleUpload = (e) => {
+    e.preventDefault();
+    const {image} = this.state;
+    const name = image.name+"_"+Date.now();
+    console.log(name); 
+    const uploadTask = storage.ref(`images/${name}`).put(image);
+    uploadTask.on('state_changed', 
+    (snapshot) => {
+      // progrss function ....
+      const progress = Math.round((snapshot.bytesTransferred / snapshot.totalBytes) * 100);
+      this.setState({progress});
+    }, 
+    (error) => {
+         // error function ....
+      console.log(error);
+    }, 
+  () => {
+      // complete function ....
+      storage.ref('images').child(name).getDownloadURL().then(url => {
+          console.log(url);
+          this.setState({imageurl: url});
+      })
+      debugger;
+  });
+
+};
 
   render() {
     return (

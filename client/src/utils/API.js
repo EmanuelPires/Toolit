@@ -1,10 +1,16 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // 
   getcustomer: function(query) {
     console.log("Axios call " + query);
     return axios.get("http://localhost:3001/api/user/login/" + query);
+  },
+
+  // Getting customer with the email address
+  getCustomerWithEmail: function(email) {
+    console.log("getting the customer with email from OKTA");
+    return axios.get("http://localhost:3001/api/user/email/" + email);
   },
 
   //gets products
@@ -13,6 +19,8 @@ export default {
     return axios.get("http://localhost:3001/api/tool/toolsearch/" + query);
   },
 
+
+// Getting order
   getorder: function() {
     console.log("Axios Call for Orders");
     return axios.get("http://localhost:3001/api/user/order");
