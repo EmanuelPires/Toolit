@@ -15,7 +15,6 @@ function onAuthRequired({ history }) {
   history.push("/login");
 }
 
-
 class App extends Component {
   render() {
     return (
@@ -26,7 +25,7 @@ class App extends Component {
           redirect_uri={window.location.origin + "/implicit/callback"}
           onAuthRequired={onAuthRequired}
         >
-        {/* <div>
+          {/* <div>
           <Route exact path="/" component={Home} />
           <Route exact path="/search" component={Search} />
           <Route exact path="/myProfile" component={MyProfile} />
@@ -34,25 +33,29 @@ class App extends Component {
           <Route exact path="/MyProducts" component={MyProducts} />
         </div> */}
 
-            <div className="App">
-                  <Route path="/" exact={true} component={Home} />
-                  <SecureRoute path="/search" exact={true} component={Search} />
-                  <SecureRoute path="/myProfile" exact={true} component={MyProfile} />
-                  <SecureRoute path="/myOrders" exact={true} component={myOrders} />
-                  <SecureRoute path="/test" exact={true} component={test} />
-                  <SecureRoute
-                    path="/MyProducts"
-                    exact={true}
-                    component={MyProducts}
-                  />
+          <div className="App">
+            <Route
+              path="https://toolit-deployed.herokuapp.com"
+              exact={true}
+              component={Home}
+            />
+            <SecureRoute path="/search" exact={true} component={Search} />
+            <SecureRoute path="/myProfile" exact={true} component={MyProfile} />
+            <SecureRoute path="/myOrders" exact={true} component={myOrders} />
+            <SecureRoute path="/test" exact={true} component={test} />
+            <SecureRoute
+              path="/MyProducts"
+              exact={true}
+              component={MyProducts}
+            />
 
-                  {/* Reroute not working, widget not loading */}
-                  <Route
-                    path="/login"
-                    render={() => <Login baseUrl="https://dev-150097.okta.com" />}
-                  />
-                  <Route path="/implicit/callback" component={ImplicitCallback} />
-              </div>
+            {/* Reroute not working, widget not loading */}
+            <Route
+              path="/login"
+              render={() => <Login baseUrl="https://dev-150097.okta.com" />}
+            />
+            <Route path="/implicit/callback" component={ImplicitCallback} />
+          </div>
         </Security>
       </Router>
     );
