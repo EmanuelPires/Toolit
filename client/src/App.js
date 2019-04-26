@@ -34,11 +34,7 @@ class App extends Component {
         </div> */}
 
           <div className="App">
-            <Route
-              path="https://toolit-deployed.herokuapp.com"
-              exact={true}
-              component={Home}
-            />
+            <Route path="/" exact={true} component={Home} />
             <SecureRoute path="/search" exact={true} component={Search} />
             <SecureRoute path="/myProfile" exact={true} component={MyProfile} />
             <SecureRoute path="/myOrders" exact={true} component={myOrders} />
